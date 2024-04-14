@@ -27,7 +27,7 @@ int isEmpty(List *l){
     return (l->head == NULL);
 }
 
-int insertNode(List *l, Node *n){
+int add(List *l, Node *n){
     if(isEmpty(l)){
         l->head = n;
         l->tail = n;
@@ -38,9 +38,21 @@ int insertNode(List *l, Node *n){
         l->tail->next = n;
         l->tail = n;
         (l->size)++;
+        if(l->size == 2){
+           l->head->next = n;
+        }
     }
 
     return 0;
+}
+
+int addAtPosition(List *l, Node *n, int position){
+    Node* left = l->head;
+    Node* right = l->head->next;
+
+
+
+
 }
 
 Node* get(List *l, int n){
@@ -51,7 +63,7 @@ Node* get(List *l, int n){
     Node *tmp;
     tmp = l->head;
     
-    for(int i = 1; i < n; i++){
+    for(int i = 0; i < n; i++){
         tmp = tmp->next;
     }
 
@@ -69,7 +81,7 @@ int remove(List *l, Node *n){
 
 }*/
 
-void removeAll(List *l){
+void clear(List *l){
     Node* current = l->head;
     Node* next;
     
@@ -110,38 +122,44 @@ int main(){
 
     */
 
-    insertNode(&list, &node1);
+    add(&list, &node1);
 
     printf("Add of node1: %p \n", &node1);
     printf("Add of List head: %p \n", list.head);
     printf("Add of List tail: %p \n", list.tail);
     printf("List Size: %d \n \n", list.size);
 
-    insertNode(&list, &node2);
+    add(&list, &node2);
 
     printf("Add of List head: %p \n", list.head);
-    printf("Add of Node2:%p \n", &node2);
+    printf("Add of Node2: %p \n", &node2);
     printf("Add of List tail: %p \n", list.tail);
     printf("List Size: %d \n \n", list.size);
 
-    insertNode(&list, &node3);
+    add(&list, &node3);
 
     printf("Add of List head: %p \n", list.head);
-    printf("Add of Node3%p \n", &node3);
+    printf("Add of Node3: %p \n", &node3);
     printf("Add of List tail: %p \n", list.tail);
     printf("List Size: %d \n \n", list.size);
 
-    printf("Add of Node1.next %p \n", node1.next);
+    printf("Add of Node1.next: %p \n", node1.next);
     printf("Add of Node2: %p \n \n", &node2);
 
     printf("Add of Node2.next: %p \n", node2.next);
-    printf("Add of Node3%p \n\n", &node3);
+    printf("Add of Node3: %p \n\n", &node3);
 
-    printf("Add of Node3: %p \n\n", get(&list, 3));
+    printf("Add of Node3: %p \n\n", get(&list, 2));
 
-    removeAll(&list);
+
+    printf("Add of Head.next: %p \n", list.head->next);
+    printf("Add of Node2: %p \n\n", &node2);
+
+    clear(&list);
 
     printf("%p \n", list.tail);
+
+    printf("%p \n", list.head);
 
 
     return 0;
